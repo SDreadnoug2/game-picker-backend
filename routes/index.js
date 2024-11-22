@@ -1,14 +1,11 @@
 const express = require('express');
-const app = express();
+const steamStoreRouter = require("./steamStore");
+const userLibraryRouter = require("./userLibrary");
+const router = express.Router();
 
-app.use(express.json());
-
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Server running on port: ${port}`);
+router.use("/steamStore", steamStoreRouter);
+//router.use("/userLibrary", userLibraryRouter);
+router.use("/", () =>{
+    console.log("hello");
 })
-
+module.exports = router;
