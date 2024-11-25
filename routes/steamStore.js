@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const getAllGames = require("../utils/gameList");
+const {randomGame} = require("../controllers/steamStore");
 
-router.get("/", getAllGames);
+router.get("/random", randomGame);
 
 module.exports = router;
