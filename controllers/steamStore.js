@@ -1,17 +1,22 @@
-const { getGamesList } = require("../utils/storeList");
+const { getGamesList, } = require("../utils/storeList");
 //Updating Steam Games List
 // should just fetch the list of games and make a variable
 // of all of them
 
 module.exports.randomGame = (req, res) => {
     const gamesList = getGamesList();
-    console.log(gamesList);
+    const randomIndex = Math.floor(Math.random() * gamesList.length + 1);
+    const gameId = gamesList[randomIndex];
+    try{
+        const response = fetch(`http://store.steampowered.com/api/appdetails?appids=${gameId}`);
+
+        if(!response.ok) {
+            return res.status(response.status)
+        }
+    }
+
+    const parsedGame = randomGame.JSON();
 };
 
-//basically I need to fetch a list of games, and then
-// fetch those games' prices, and maybe just main image, and
-// description.
-
-// it would be better to fetch the length, pick a random value
-// between that length after storing the result, and then 
-// fetch those items.
+// I need to check if the fetched game is valid.
+// Steam will return 
