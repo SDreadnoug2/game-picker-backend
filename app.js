@@ -10,6 +10,7 @@ const { setGamesList, setGamesListLength } = require('./utils/storeList');
 
 //json parser
 app.use(express.json());
+app.use(cors());
 app.use('/', index);
 
 mongoose.connect("mongodb://127.0.0.1:27017/SteamPicker")
@@ -26,10 +27,10 @@ async function updateGamesList(){
     catch (error) {
         console.error("Error updating list:", error)
     }
+    console.log('games Set.');
 }
 updateGamesList();
 setInterval(() => updateGamesList, dayMS);
-
 
 const port = 3001;
 app.listen(3001, () => {
