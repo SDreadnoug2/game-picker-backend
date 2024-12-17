@@ -50,7 +50,7 @@ module.exports.randomGame = async function (req, res, next){
     while(!gameFound){
         try{
             const gameData = await fetchGameData();
-            if(gameData.type !== 'game') {
+            if(gameData.type !== 'game' || gameData.name.toLowerCase().includes("playtest")) {
                 console.log('this aint no damn game.');
                 continue; 
             }
@@ -58,7 +58,7 @@ module.exports.randomGame = async function (req, res, next){
             }
          catch(error){
             console.error(error);
-            throw new GameError('Issue Fetching Game');
+            throw new GameError('Issue Fetching Game', error);
         }
     }
 };
