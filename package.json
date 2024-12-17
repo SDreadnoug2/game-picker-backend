@@ -1,14 +1,23 @@
 {
   "dependencies": {
-    "express": "^4.21.1"
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "helmet": "^8.0.0",
+    "mongoose": "^8.8.2",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.7",
+    "request": "^2.88.2"
   },
   "name": "gamepickerbackend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
+  "keywords": [],
   "description": ""
 }
