@@ -7,6 +7,12 @@ const mongoose = require("mongoose");
 const index = require("./routes/index");
 const { getAllGames } = require('./utils/fetchGames');
 const { setGamesList, setGamesListLength } = require('./utils/storeList');
+const SteamAuth = require("node-steam-openid");
+const steam = new SteamAuth({
+    realm: "https://pickagame.app",
+    returnUrl:"https://pickagame.app/libraries/userlibrary",
+    apiKey: "11CEE5DB82AEEFD5D66119105D65286C",
+})
 
 //json parser
 app.use(express.json());
