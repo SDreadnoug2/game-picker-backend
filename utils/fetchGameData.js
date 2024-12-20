@@ -15,3 +15,20 @@ return fetch(`https://store.steampowered.com/api/appdetails?appids=${gameId.appi
     return gameInfo;
 })
 };
+
+module.exports.fetchUserGame = (games, req, res, next) => {
+    const randomIndex = Math.floor(Math.random() * games.length);
+    const gameId = games[randomIndex];
+    return fetch(`https://store.steampowered.com/api/appdetails?appids=${gameId.appid}&filters=basic,price_overview,screenshots,genres,metacritic,platforms,developers`)
+.then((res) => {
+    if(!res.ok){
+        return res.status;
+    }
+    return res.json();
+}).then((game) => {
+    const playtime = games[randomIndex].playtime_forever;
+    const gameInfo = game[gameId.appid]?.data;
+    gameInfo.playTime = playtime;
+    return gameInfo;
+})
+}

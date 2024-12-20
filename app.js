@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require("cors");
@@ -8,6 +9,7 @@ const passport = require('passport');
 const mongoose = require("mongoose");
 const index = require("./routes/index");
 const { getAllGames } = require('./utils/fetchGames');
+const errorHandler = require('./middleware/error-handler');
 const { setGamesList, setGamesListLength } = require('./utils/storeList');
 const fs = require('fs');
 const https = require('https');
@@ -25,6 +27,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(errorHandler);
 
 passport.serializeUser((user, done) => {
     done(null, user); // Save the whole user object in the session

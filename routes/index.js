@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.use("/auth", authRouter);
 router.use("/steamstore", steamStoreRouter);
-//router.use("/userLibrary", userLibraryRouter);
+router.use("/userLibrary", userLibraryRouter);
 
 module.exports = router;
