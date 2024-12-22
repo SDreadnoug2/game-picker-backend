@@ -20,8 +20,6 @@ function(identifier, profile, done) {
 router.get('/login', passport.authenticate('steam', {failureRedirect: '/login/failure'}),
   function(req, res) {
     const user = req.user;
-    console.log(user);
-    res.send(user);
     const redirectUrl = `http://www.pickagame.app/libraries/userlibrary/success?userID=${user.steamID}&username=${encodeURIComponent(user.name)}&avatar=${encodeURIComponent(user.avatar)}`;
     res.redirect(redirectUrl);
   });
