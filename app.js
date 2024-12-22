@@ -15,7 +15,6 @@ const { setGamesList, setGamesListLength } = require('./utils/storeList');
 
 const dayMS = 1000 * 60 * 60 * 24;
 const NODE_ENV = process.env.NODE_ENV; 
-const requestOrigin = ['https://pickagame.app', 'https://api.pickagame.app'];
 
 async function updateGamesList(){
   try{
@@ -30,10 +29,18 @@ async function updateGamesList(){
 
 app.use(express.json());
 app.use(helmet());
-app.use(cors({
-    origin: requestOrigin,
-    credentials: true
-}));
+const allowedOrigins = ['https://pickagame.app', 'https://api.pickagame.crabdance.com'];
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+  })
+);
 app.use(session({
     secret: process.env.SESSION_SECRET, 
     resave: false,            
