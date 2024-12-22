@@ -21,18 +21,7 @@ router.get('/login', passport.authenticate('steam', {failureRedirect: '/login/fa
   function(req, res) {
     const user = req.user;
     console.log(user);
-    res.cookie('userData', JSON.stringify({
-      steamID: user.steamID,
-      name: user.name,
-      avatar: user.avatar,
-    }), {
-      httpOnly: false,
-      secure: true,
-      sameSite: 'None',
-      domain: '.pickagame.app',
-      path: '/',
-      maxAge: 24 * 60 * 60 * 1000,
-    });
+    res.send(user);
     const redirectUrl = `http://www.pickagame.app/libraries/userlibrary`;
     res.redirect(redirectUrl);
   });
