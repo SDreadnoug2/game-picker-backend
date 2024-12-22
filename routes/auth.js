@@ -5,7 +5,7 @@ const passport = require('passport');
 
 passport.use(new SteamStrategy({
   returnURL: 'https://api.pickagame.crabdance.com/auth/login',
-  realm: 'https://pickagame.app',
+  realm: 'https://api.pickagame.crabdance.com',
   apiKey: '11CEE5DB82AEEFD5D66119105D65286C'
 },
 function(identifier, profile, done) {
