@@ -31,15 +31,7 @@ app.use(express.json());
 app.use(helmet());
 const allowedOrigins = ['https://pickagame.app', 'https://api.pickagame.crabdance.com'];
 app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error('Not allowed by CORS'));
-    },
-    credentials: true,
-  })
+  cors(allowedOrigins)
 );
 app.use(session({
     secret: process.env.SESSION_SECRET, 
