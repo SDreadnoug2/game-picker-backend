@@ -15,7 +15,7 @@ const { setGamesList, setGamesListLength } = require('./utils/storeList');
 
 const dayMS = 1000 * 60 * 60 * 24;
 const NODE_ENV = process.env.NODE_ENV; 
-const requestOrigin = NODE_ENV === "production" ? "https://pickagame.app" : "https://localhost:5173";
+const requestOrigin = ['https://pickagame.app', 'https://api.pickagame.app'];
 
 async function updateGamesList(){
   try{
