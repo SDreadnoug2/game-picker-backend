@@ -29,7 +29,7 @@ async function updateGamesList(){
 
 app.use(express.json());
 app.use(helmet());
-const allowedOrigins = ['https://pickagame.app', 'https://api.pickagame.crabdance.com'];
+const allowedOrigins = 'https://pickagame.app'
 app.use(
   cors(allowedOrigins)
 );
