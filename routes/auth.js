@@ -22,7 +22,7 @@ router.get('/login', passport.authenticate('steam', {failureRedirect: '/login/fa
     const user = req.user;
     console.log(user);
     res.send(user);
-    const redirectUrl = `http://www.pickagame.app/libraries/userlibrary?userID=${user.steamID}&username=${user.name}&avatar=${user.avatar}`;
+    const redirectUrl = `http://www.pickagame.app/libraries/userlibrary?userID=${user.steamID}&username=${encodeURIComponent(user.name)}&avatar=${encodeURIComponent(user.avatar)}`;
     res.redirect(redirectUrl);
   });
 
