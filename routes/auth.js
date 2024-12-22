@@ -5,7 +5,7 @@ const passport = require('passport');
 
 passport.use(new SteamStrategy({
   returnURL: 'https://api.pickagame.crabdance.com/auth/login',
-  realm: 'https://api.pickagame.crabdance.com',
+  realm: 'https://pickagame.app',
   apiKey: '11CEE5DB82AEEFD5D66119105D65286C'
 },
 function(identifier, profile, done) {
@@ -31,7 +31,7 @@ router.get('/login', passport.authenticate('steam', {failureRedirect: '/login/fa
       sameSite: 'Lax',
       maxAge: 24 * 60 * 60 * 1000,
     });
-    const redirectUrl = `http://localhost:5173/libraries`;
+    const redirectUrl = `http://www.pickagame.app/libraries/userlibrary`;
     res.redirect(redirectUrl);
   });
 
