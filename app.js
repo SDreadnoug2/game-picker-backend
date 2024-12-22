@@ -51,5 +51,6 @@ passport.deserializeUser((obj, done) => {
 updateGamesList();
 setInterval(updateGamesList, dayMS);
 app.use('/', index);
+app.get('/', console.log("received"));
 
 app.listen(3001, () => console.log('server running at 3001'));
