@@ -14,9 +14,6 @@ const { getAllGames } = require('./utils/fetchGames');
 const { setGamesList, setGamesListLength } = require('./utils/storeList');
 
 const dayMS = 1000 * 60 * 60 * 24;
-const key = fs.readFileSync('./key.pem');
-const cert = fs.readFileSync('./cert.pem');
-const credentials = {key, cert};
 const NODE_ENV = process.env.NODE_ENV; 
 const requestOrigin = NODE_ENV === "production" ? "https://pickagame.app" : "https://localhost:5173";
 
@@ -38,7 +35,7 @@ app.use(cors({
     credentials: true
 }));
 app.use(session({
-    secret: 'your-secret-key', 
+    secret: process.env.SESSION_SECRET, 
     resave: false,            
     saveUninitialized: false, 
   }));
@@ -55,4 +52,4 @@ updateGamesList();
 setInterval(updateGamesList, dayMS);
 app.use('/', index);
 
-https.createServer(credentials, app).listen(3001, () => console.log("server running on 3001", requestOrigin));
+app.listen(3001, () => console.log('server running at 3001'));
