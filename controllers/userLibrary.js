@@ -5,6 +5,9 @@ const { BadRequest } = require('../utils/BadRequestError');
 const { ServerError } = require('../utils/ServerError');
 
 async function fetchUserLibrary(userID, next) {
+    if(!userID){
+        next(new BadRequest('No User ID'));
+    }
     try {
         const response = await axios(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${APIKEY}&steamid=${userID}&include_appinfo=true&format=json`);
         const data = response.data
@@ -17,7 +20,7 @@ async function fetchUserLibrary(userID, next) {
 module.exports.randomUserGame = async function (req, res, next){
     const userID = await req.query.userID
     if(!userID){
-        next(new BadRequest('No User ID'))
+        next(new BadRequest('No User ID'));
     }
     console.log(userID);
     const library = await fetchUserLibrary(userID);
